@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vescaffr <vescaffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 13:58:13 by vescaffr          #+#    #+#             */
-/*   Updated: 2023/04/21 14:44:51 by vescaffr         ###   ########.fr       */
+/*   Created: 2023/04/21 14:42:30 by vescaffr          #+#    #+#             */
+/*   Updated: 2023/04/21 14:44:41 by vescaffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Harl.hpp"
+#ifndef HARL_HPP
+# define HARL_HPP
 
-int main()
+#include <iostream>
+
+class Harl
 {
-    std::string level;
-    Harl harl;
-    
-    while (1)
-    {
-        std::cout << "Enter a level :" << std::endl;
-        std::cin >> level;
-        harl.complain(level);
-        if (std::cin.eof())
-			return 0;
-    }
-}
+    private :
+
+    public :
+        Harl();
+        ~Harl();
+        void debug(void);
+        void info(void);
+        void warning(void);
+        void error(void);
+        void complain(std::string level);
+};
+
+typedef void (Harl::*t_func) ( void );
+
+#endif
