@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Sed.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vescaffr <vescaffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 13:04:05 by vescaffr          #+#    #+#             */
-/*   Updated: 2023/04/21 13:50:54 by vescaffr         ###   ########.fr       */
+/*   Created: 2023/04/21 13:48:12 by vescaffr          #+#    #+#             */
+/*   Updated: 2023/04/21 13:50:40 by vescaffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Sed.hpp"
+#ifndef SED_HPP
+# define SED_HPP
 
-int main(int argc, char **argv)
+#include <iostream>
+#include <fstream>
+
+class Sed
 {
-    if (argc != 4)
-    {
-        std::cerr << "Error: Wrong number of arguments\n" << std::endl;
-        return 1;
-    }
-    Sed sed1(argv[1]);
-    sed1.replace(argv[2], argv[3]);
-    return 0;
-}
+ private:
+ 	std::string		infile;
+    std::string     outfile;
+ public:
+	Sed(std::string filename);
+    ~Sed();
+    void    replace(std::string s1, std::string s2);
+};
+
+#endif
