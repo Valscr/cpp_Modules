@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vescaffr <vescaffr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:53:50 by vescaffr          #+#    #+#             */
-/*   Updated: 2023/05/15 17:35:18 by vescaffr         ###   ########.fr       */
+/*   Updated: 2023/05/15 21:41:07 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,12 @@ ClapTrap::~ClapTrap()
     std::cout << "ClapTrap " << this->name << " destructor called" << std::endl;
 }
 
-ClapTrap&   ClapTrap::operator=( const ClapTrap& rhs )
+ClapTrap&   ClapTrap::operator=(const ClapTrap& source)
 {
-    this->name = rhs.name;
-    this->hit_points = rhs.hit_points;
-    this->energy_points = rhs.energy_points;
-    this->attack_damage = rhs.attack_damage;
-    std::cout << "[ ClapTrap ] - " << this->name << " has been copied with copy assignment operator." << std::endl;
+    this->name = source.name;
+    this->hit_points = source.hit_points;
+    this->energy_points = source.energy_points;
+    this->attack_damage = source.attack_damage;
     return *this;
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vescaffr <vescaffr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:53:50 by vescaffr          #+#    #+#             */
-/*   Updated: 2023/05/15 16:06:17 by vescaffr         ###   ########.fr       */
+/*   Updated: 2023/05/15 19:33:01 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@ ClapTrap::ClapTrap(std::string name)
 ClapTrap::~ClapTrap()
 {
     std::cout << "ClapTrap destructor called" << std::endl;
+}
+
+ClapTrap&   ClapTrap::operator=(const ClapTrap& source)
+{
+    this->name = source.name;
+    this->hit_points = source.hit_points;
+    this->energy_points = source.energy_points;
+    this->attack_damage = source.attack_damage;
+    return *this;
 }
 
 void ClapTrap::attack(const std::string& target)
