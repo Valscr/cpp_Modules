@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vescaffr <vescaffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 14:15:49 by vescaffr          #+#    #+#             */
-/*   Updated: 2023/05/17 08:49:07 by valentin         ###   ########.fr       */
+/*   Created: 2023/05/16 16:24:50 by vescaffr          #+#    #+#             */
+/*   Updated: 2023/05/16 17:05:52 by vescaffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
-#include "Dog.hpp"
-#include "WrongCat.hpp"
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
 
-int main()
+#include "WrongAnimal.hpp"
+
+class WrongCat : public WrongAnimal
 {
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
-    delete j;//should not create a leak
-    delete i;
-    return 0;
-}
+    public:
+        WrongCat();
+        ~WrongCat();
+        void makeSound(void) const;
+};
+
+#endif

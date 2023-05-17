@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vescaffr <vescaffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 14:15:49 by vescaffr          #+#    #+#             */
-/*   Updated: 2023/05/17 08:49:07 by valentin         ###   ########.fr       */
+/*   Created: 2023/05/16 16:08:18 by vescaffr          #+#    #+#             */
+/*   Updated: 2023/05/16 18:26:22 by vescaffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
-#include "Dog.hpp"
-#include "WrongCat.hpp"
+#ifndef DOG_HPP
+# define DOG_HPP
 
-int main()
+#include "Animal.hpp"
+
+class Dog : public Animal
 {
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
-    delete j;//should not create a leak
-    delete i;
-    return 0;
-}
+    private:
+        Brain *_brain;
+    public:
+        Dog();
+        ~Dog();
+        void makeSound(void) const;
+};
+
+#endif
