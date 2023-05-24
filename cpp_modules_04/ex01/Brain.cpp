@@ -6,7 +6,7 @@
 /*   By: vescaffr <vescaffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 18:14:03 by vescaffr          #+#    #+#             */
-/*   Updated: 2023/05/16 18:25:02 by vescaffr         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:11:24 by vescaffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Brain::Brain(void)
 {
-    std::cout << "Brain Constructor is called" << std::endl;
+    std::cout << "Brain Constructor is called, Brain is created" << std::endl;
 }
 
 Brain::~Brain(void)

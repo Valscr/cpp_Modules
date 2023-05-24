@@ -6,7 +6,7 @@
 /*   By: vescaffr <vescaffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:05:30 by vescaffr          #+#    #+#             */
-/*   Updated: 2023/05/16 17:14:02 by vescaffr         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:19:13 by vescaffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ Animal::Animal()
 
 Animal::Animal(std::string name)
 {
+    std::cout << "Animal Constructor is called" << std::endl;
     this->type = name;
 }
 

@@ -6,7 +6,7 @@
 /*   By: vescaffr <vescaffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:24:11 by vescaffr          #+#    #+#             */
-/*   Updated: 2023/05/16 17:45:55 by vescaffr         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:19:23 by vescaffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ WrongAnimal::WrongAnimal()
 
 WrongAnimal::WrongAnimal(std::string name)
 {
+    std::cout << "WrongAnimal Constructor is called" << std::endl;
     this->type = name;
 }
 

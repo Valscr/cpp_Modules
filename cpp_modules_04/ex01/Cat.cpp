@@ -6,7 +6,7 @@
 /*   By: vescaffr <vescaffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:05:09 by vescaffr          #+#    #+#             */
-/*   Updated: 2023/05/16 18:16:43 by vescaffr         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:20:15 by vescaffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ Cat::Cat() : Animal("Cat")
 
 Cat::~Cat()
 {
-    std::cout << "Cat Destructor is called" << std::endl;
     delete this->_brain;
+    std::cout << "Cat Destructor is called" << std::endl;
+   
 }
 
 void    Cat::makeSound(void) const

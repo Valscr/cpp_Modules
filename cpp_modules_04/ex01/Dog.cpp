@@ -6,7 +6,7 @@
 /*   By: vescaffr <vescaffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:05:02 by vescaffr          #+#    #+#             */
-/*   Updated: 2023/05/16 18:25:46 by vescaffr         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:20:11 by vescaffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ Dog::Dog() : Animal("Dog")
 
 Dog::~Dog()
 {
-    std::cout << "Dog Destructor is called" << std::endl;
     delete this->_brain;
+    std::cout << "Dog Destructor is called" << std::endl;
+    
 }
 
 void    Dog::makeSound(void) const
