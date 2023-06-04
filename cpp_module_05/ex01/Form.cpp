@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 23:08:36 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/04 21:19:02 by valentin         ###   ########.fr       */
+/*   Updated: 2023/06/04 22:23:41 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ void    Form::beSigned(Bureaucrat const &src)
 {
     try {
         if (src.getGrade() > grade_signe)
-            throw Form::GradeTooLowException();
+            throw Bureaucrat::GradeTooLowException();
         else
             this->signe = true;
         }
-    catch (GradeTooLowException& e)
+    catch (Bureaucrat::GradeTooLowException& e)
     {
         std::cout << src.getName() << " coulnd't sign " << this->name << " because " << e.what() << std::endl;
     }
