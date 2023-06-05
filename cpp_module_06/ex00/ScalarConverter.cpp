@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:57:22 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/05 23:53:26 by valentin         ###   ########.fr       */
+/*   Updated: 2023/06/06 00:23:20 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,43 @@ ScalarConverter::ScalarConverter()
 
 ScalarConverter::~ScalarConverter()
 {
+}
+
+ScalarConverter::ScalarConverter(const ScalarConverter& src)
+{
+    *this = src;
+}
+
+int    ScalarConverter::getI(void) const
+{
+    return this->_n;
+}
+
+float    ScalarConverter::getF(void) const
+{
+    return this->_f;
+}
+
+double    ScalarConverter::getD(void) const
+{
+    return this->_d;
+}
+
+char    ScalarConverter::getC(void) const
+{
+    return this->_c;
+}
+
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter& src)
+{
+    if (this != &src)
+    {
+        this->_n = src.getI();
+        this->_f = src.getF();
+        this->_c = src.getC();
+        this->_d = src.getD();
+    }
+    return *this;
 }
 
 int ScalarConverter::isInt(std::string str)

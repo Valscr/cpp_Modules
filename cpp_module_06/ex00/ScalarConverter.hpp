@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:57:38 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/05 23:23:13 by valentin         ###   ########.fr       */
+/*   Updated: 2023/06/06 00:24:27 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ class ScalarConverter
     public:
         ScalarConverter();
         ~ScalarConverter();
+        ScalarConverter(const ScalarConverter& src);
+        ScalarConverter& operator=(const ScalarConverter& src);
+        char getC(void) const;
+        double getD(void) const;
+        float getF(void) const;
+        int getI(void) const;
         void set(std::string str);
         int isInt(std::string str);
         int isFloat(std::string str);
