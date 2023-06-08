@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:23:22 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/09 00:00:24 by valentin         ###   ########.fr       */
+/*   Updated: 2023/06/09 00:05:04 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ BitcoinExchange::BitcoinExchange(std::string line)
         throw std::runtime_error("");
     for (; std::isdigit(line[i]) || line[i] == '-'; i++) {}
     if (!isValidDate(std::stoi(line.substr(0, 4)), std::stoi(line.substr(5, 2)), std::stoi(line.substr(8, 2))))
-        throw std::runtime_error("Error: bad input");
+        throw std::runtime_error("Error: bad input\n");
     this->_date = line.substr(0, i);
     for (; line[i] == ' '; i++) {}
     if (line[i] != '|')
@@ -139,6 +139,7 @@ int main(int argc, char **argv)
                 }
                 catch (const std::runtime_error& e)
                 {
+                    std::cout << e.what();
                     continue;
                 }
         }
