@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:23:22 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/09 11:43:49 by valentin         ###   ########.fr       */
+/*   Updated: 2023/06/09 12:05:00 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ int main(int argc, char **argv)
     if (fileinput.is_open() && filedata.is_open())
     {
         std::list<std::string> datacsv;
-        std::string line1;
-        while (std::getline(filedata, line1))
-            datacsv.push_back(line1);
+        std::string linedata;
+        while (std::getline(filedata, linedata))
+            datacsv.push_back(linedata);
         filedata.close();
-        std::string line;
-        while (std::getline(fileinput, line))
+        std::string lineinput;
+        while (std::getline(fileinput, lineinput))
         {
             try {
-                BitcoinExchange btc(line);
+                BitcoinExchange btc(lineinput);
                 std::cout << btc;
                 std::cout << btc.find_date_price(datacsv) << std::endl;
                 }

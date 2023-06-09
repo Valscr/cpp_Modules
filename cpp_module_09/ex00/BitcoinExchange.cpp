@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 11:25:15 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/09 11:47:11 by valentin         ###   ########.fr       */
+/*   Updated: 2023/06/09 11:54:47 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ BitcoinExchange::BitcoinExchange(std::string line)
 
 float BitcoinExchange::find_date_price(std::list<std::string> database)
 {
-    std::string str = "2009-01-02";
     std::list<std::string>::iterator it = database.begin();
     it++;
+    std::string str = it->substr(0, 10);
     for (;it != database.end(); ++it)
     {
             if (compareDates(it->substr(0, 10), this->_date.substr(0, 10)) && compareDates(str.substr(0, 10), it->substr(0, 10)))
