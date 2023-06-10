@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 20:33:40 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/10 22:40:05 by valentin         ###   ########.fr       */
+/*   Updated: 2023/06/10 22:46:57 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,14 @@ int main (int argc, char **argv)
     std::vector<int> numbers_vec;
     std::deque<int> numbers_deq;
     int i = 1;
+    std::cout << "Before :   ";
     for (; argv[i]; i++)
     {
         numbers_vec.push_back(std::stoi(argv[i]));
         numbers_deq.push_back(std::stoi(argv[i]));
+        std::cout << std::stoi(argv[i]) << " ";
     }
+    std::cout << std::endl;
     clock_t startTime_vec = clock();
     mergeInsertionSort_vector(numbers_vec, i / 2);
     clock_t endTime_vec = clock();
@@ -95,10 +98,8 @@ int main (int argc, char **argv)
     mergeInsertionSort_deque(numbers_deq, i / 2);
     clock_t endTime_deq = clock();
     double duration_deq = static_cast<double>(endTime_deq - startTime_deq) / (double)CLOCKS_PER_SEC;
+    std::cout << "After :   ";
     for (std::vector<int>::const_iterator it = numbers_vec.begin(); it != numbers_vec.end(); ++it)
-        std::cout << *it << " ";
-    std::cout << std::endl;
-    for (std::deque<int>::const_iterator it = numbers_deq.begin(); it != numbers_deq.end(); ++it)
         std::cout << *it << " ";
     std::cout << std::endl;
     std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector : " << std::fixed << duration_vec << " us" << std::endl;
