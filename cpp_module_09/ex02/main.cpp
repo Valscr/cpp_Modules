@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 20:33:40 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/10 22:46:57 by valentin         ###   ########.fr       */
+/*   Updated: 2023/06/10 23:37:26 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,19 @@ int main (int argc, char **argv)
     std::vector<int> numbers_vec;
     std::deque<int> numbers_deq;
     int i = 1;
+    for (; argv[i]; i++)
+    {
+        if (std::stoi(argv[i]) < 0)
+        {
+            std::cerr << "Error" << std::endl;
+            return (1);
+        }
+    }
+    i = 1;
     std::cout << "Before :   ";
     for (; argv[i]; i++)
     {
+       
         numbers_vec.push_back(std::stoi(argv[i]));
         numbers_deq.push_back(std::stoi(argv[i]));
         std::cout << std::stoi(argv[i]) << " ";
