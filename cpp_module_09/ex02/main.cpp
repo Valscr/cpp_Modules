@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 20:33:40 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/10 23:37:26 by valentin         ###   ########.fr       */
+/*   Updated: 2023/06/11 00:17:33 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,12 @@ int main (int argc, char **argv)
     int i = 1;
     for (; argv[i]; i++)
     {
+        for (int j = 0; argv[i][j]; j++)
+            if (!std::isdigit(argv[i][j]))
+            {
+                std::cerr << "Error" << std::endl;
+                return (1);
+            }
         if (std::stoi(argv[i]) < 0)
         {
             std::cerr << "Error" << std::endl;
@@ -94,7 +100,6 @@ int main (int argc, char **argv)
     std::cout << "Before :   ";
     for (; argv[i]; i++)
     {
-       
         numbers_vec.push_back(std::stoi(argv[i]));
         numbers_deq.push_back(std::stoi(argv[i]));
         std::cout << std::stoi(argv[i]) << " ";
@@ -110,7 +115,8 @@ int main (int argc, char **argv)
     double duration_deq = static_cast<double>(endTime_deq - startTime_deq) / (double)CLOCKS_PER_SEC;
     std::cout << "After :   ";
     for (std::vector<int>::const_iterator it = numbers_vec.begin(); it != numbers_vec.end(); ++it)
-        std::cout << *it << " ";
+        if (*it != *(it + 1))
+            std::cout << *it << " ";
     std::cout << std::endl;
     std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector : " << std::fixed << duration_vec << " us" << std::endl;
     std::cout << "Time to process a range of " << argc - 1 << " elements with std::deque : " << std::fixed << duration_deq << " us" << std::endl;
