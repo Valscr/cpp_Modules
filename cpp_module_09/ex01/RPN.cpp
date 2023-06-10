@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 19:47:22 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/09 20:16:53 by valentin         ###   ########.fr       */
+/*   Updated: 2023/06/10 10:58:58 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,15 @@ void RPN::calculate()
             operandStack.push(std::stoi(&this->_operation[i]));
         else if (this->_operation [i] == '-' || this->_operation[i] == '+' || this->_operation[i] == '*' || this->_operation[i] == '/')
         {
-            operand2 = operandStack.top();
-            operandStack.pop();
-            operand1 = operandStack.top();
-            operandStack.pop();
-            
+            if (operandStack.size() >= 2)
+            {
+                operand2 = operandStack.top();
+                operandStack.pop();
+                operand1 = operandStack.top();
+                operandStack.pop();
+            }
+            else
+                throw std::runtime_error("Error\n");
             if (this->_operation[i] == '+')
                 operandStack.push(operand1 + operand2);
             else if (this->_operation[i] == '-')
