@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 19:47:22 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/10 10:58:58 by valentin         ###   ########.fr       */
+/*   Updated: 2023/06/11 10:37:35 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,12 @@ void RPN::calculate()
             throw std::runtime_error("Error\n");
         i++;
     }
-    this->_result = operandStack.top();
+    if (operandStack.size() == 1)
+        this->_result = operandStack.top();
+    else if (operandStack.size() > 1)
+        throw std::runtime_error("The stack contains more than one number\n");
+    else
+        throw std::runtime_error("Error\n");
     return ;
 }
 
