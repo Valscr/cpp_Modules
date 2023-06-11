@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 20:33:40 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/11 12:29:33 by valentin         ###   ########.fr       */
+/*   Updated: 2023/06/11 12:37:10 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int main (int argc, char **argv)
     }
     catch (const std::out_of_range& e)
     {
-        std::cout << "Erreur : Le nombre est hors de la plage valide pour un int." << std::endl;
+        std::cout << "Error: out of int range" << std::endl;
     }
     return (0);
 }
