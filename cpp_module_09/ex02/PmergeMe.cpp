@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 11:00:56 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/11 12:00:44 by valentin         ###   ########.fr       */
+/*   Updated: 2023/06/11 12:28:17 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ PMergeMe::PMergeMe(int argc, char **argv)
     {
         for (int j = 0; argv[i][j]; j++)
             if (!std::isdigit(argv[i][j]))
-                throw std::runtime_error("Error\n");
+                throw std::runtime_error("Error: only positive integer numbers are allowed\n");
         if (std::stoi(argv[i]) < 0)
             throw std::runtime_error("Error\n");
     }
@@ -109,6 +109,20 @@ void PMergeMe::Sort()
     this->_duration_deq = static_cast<double>(endTime - startTime) / (double)CLOCKS_PER_SEC;
 }
 
+PMergeMe& PMergeMe::operator=(const PMergeMe& src)
+{
+    if (this != &src)
+    {
+        this->_numbers_vec_before = src.getVector_start();
+        this->_numbers_vec = src.getVector_end();
+        this->_numbers_deq = src.getDeque_end();
+        this->_duration_deq = src.get_duration_deq();
+        this->_size = src.get_size();
+        this->_duration_vec = src.get_duration_vec();
+    }
+    return *this;
+}
+
 std::ostream&    operator<<(std::ostream& o, const PMergeMe& src)
 {
     o << "Before :   ";
@@ -125,4 +139,3 @@ std::ostream&    operator<<(std::ostream& o, const PMergeMe& src)
     o << "Time to process a range of " << src.get_size() << " elements with std::deque : " << std::fixed << src.get_duration_deq() << " us" << std::endl;
     return o;
 }
-

@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 11:01:09 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/11 12:01:18 by valentin         ###   ########.fr       */
+/*   Updated: 2023/06/11 12:15:17 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ class PMergeMe
     public:
         PMergeMe(int argc, char **argv);
         ~PMergeMe() {};
+        PMergeMe& operator=(const PMergeMe& src);
+        PMergeMe(const PMergeMe& src) {*this = src;};
         void insertionSort_vector(std::vector<int>& vec);
         void mergeInsertionSort_vector(std::vector<int>& vec, int threshold);
         void insertionSort_deque(std::deque<int>& deq);
@@ -38,6 +40,7 @@ class PMergeMe
         void Sort();
         std::vector<int> getVector_start() const {return this->_numbers_vec_before;};
         std::vector<int> getVector_end() const {return this->_numbers_vec;};
+        std::deque<int> getDeque_end() const {return this->_numbers_deq;};
         int get_size() const {return this->_size;};
         double get_duration_vec() const {return this->_duration_vec;};
         double get_duration_deq() const {return this->_duration_deq;};
