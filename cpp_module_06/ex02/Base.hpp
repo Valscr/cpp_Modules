@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vescaffr <vescaffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 12:33:37 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/06 12:37:06 by valentin         ###   ########.fr       */
+/*   Updated: 2023/06/23 16:23:10 by vescaffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define BASE_HPP
 
 #include <iostream>
+#include <cstdlib>
 
 class Base
 {
@@ -34,7 +35,11 @@ class C : public Base
 {
 };
 
-Base * generate(void);
+class D : public Base
+{
+};
+
+Base *generate(void);
 void identify(Base* p);
 void identify(Base& p);
 

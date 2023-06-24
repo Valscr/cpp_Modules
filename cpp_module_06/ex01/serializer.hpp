@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   serializer.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vescaffr <vescaffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:24:32 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/06 11:28:56 by valentin         ###   ########.fr       */
+/*   Updated: 2023/06/22 17:10:12 by vescaffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <string>
+#include <stdint.h>
 
 struct Data
 {
@@ -22,7 +23,16 @@ struct Data
     int         number;
 };
 
-uintptr_t    serialize(Data *data);
-Data*   deserialize(uintptr_t data);
+class Serializer 
+{
+    public:
+        static uintptr_t    serialize(Data *data) {
+            return (reinterpret_cast< uintptr_t >(data));
+        }
+
+        static Data*   deserialize(uintptr_t data) {
+            return (reinterpret_cast<Data*>(data));
+        }
+};
 
 #endif

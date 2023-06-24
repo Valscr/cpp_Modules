@@ -6,60 +6,11 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:57:22 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/06 00:23:20 by valentin         ###   ########.fr       */
+/*   Updated: 2023/06/25 00:23:04 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
-
-ScalarConverter::ScalarConverter()
-{
-    this->_c = '\0';
-    this->_n = 0;
-    this->_f = 0;
-    this->_d = 0;
-}
-
-ScalarConverter::~ScalarConverter()
-{
-}
-
-ScalarConverter::ScalarConverter(const ScalarConverter& src)
-{
-    *this = src;
-}
-
-int    ScalarConverter::getI(void) const
-{
-    return this->_n;
-}
-
-float    ScalarConverter::getF(void) const
-{
-    return this->_f;
-}
-
-double    ScalarConverter::getD(void) const
-{
-    return this->_d;
-}
-
-char    ScalarConverter::getC(void) const
-{
-    return this->_c;
-}
-
-ScalarConverter& ScalarConverter::operator=(const ScalarConverter& src)
-{
-    if (this != &src)
-    {
-        this->_n = src.getI();
-        this->_f = src.getF();
-        this->_c = src.getC();
-        this->_d = src.getD();
-    }
-    return *this;
-}
 
 int ScalarConverter::isInt(std::string str)
 {
@@ -120,142 +71,166 @@ int ScalarConverter::isDouble(std::string str)
     return (1);
 }
 
-void ScalarConverter::set(std::string str)
+int ScalarConverter::ConvertToInt(const std::string& str)
 {
-    this->number = str;
-    if (str.length() == 1 && std::isalpha(str[0]) && std::isprint(str[0]))
-        this->_type = "CHAR";
-    else if (isFloat(str))
-        this->_type = "FLOAT";
-    else if (isInt(str))
-        this->_type = "INT";
-   else if (isDouble(str))
-        this->_type = "DOUBLE";
+    std::istringstream iss(str);
+    int value;
+    if (!(iss >> value))
+        throw std::runtime_error("Error: not a valid int\n");
+    return value;
 }
 
-int ScalarConverter::is_possible()
+float ScalarConverter::ConvertToFloat(const std::string& str)
+{
+    std::istringstream iss(str);
+    float value;
+    if (!(iss >> value))
+        throw std::runtime_error("Error: not a valid float\n");
+    return value;
+}
+
+double ScalarConverter::ConvertToDouble(const std::string& str)
+{
+    std::istringstream iss(str);
+    double value;
+    if (!(iss >> value))
+        throw std::runtime_error("Error: not a valid double\n");
+    return value;
+}
+
+std::string ScalarConverter::set(std::string str)
+{
+    std::string type;
+    if (str.length() == 1 && !std::isdigit(str[0]) && std::isprint(str[0]))
+        type = "CHAR";
+    else if (isFloat(str))
+        type = "FLOAT";
+    else if (isInt(str))
+        type = "INT";
+    else if (isDouble(str))
+        type = "DOUBLE";
+    else if (ScalarConverter::no_litteral(str))
+        type = "LITTERAL";
+    return (type);
+}
+
+int ScalarConverter::is_possible(std::string type, std::string number)
 {
     try
     {
-        if (this->_type == "INT")
-            _n = std::stoi(this->number);
-        else if (this->_type == "FLOAT")
-            _f = std::stof(this->number);
-        else if (this->_type == "DOUBLE")
-            _d = std::stod(this->number);
+        if (type == "INT")
+            ConvertToInt(number);
+        else if (type == "FLOAT")
+            ConvertToFloat(number.substr(0, number.length() - 1));
+        else if (type == "DOUBLE")
+            ConvertToDouble(number);
     }
     catch (std::exception& e)
     {
+        std::cout << e.what();
         return true;
     }
     return false;
 }
 
-int    ScalarConverter::no_litteral() const
+int    ScalarConverter::no_litteral(std::string number)
 {
-    if (this->number == "nan" || this->number == "nanf" || this->number == "+inf"
-        || this->number == "-inf" || this->number == "+inff" || this->number == "-inff")
+    if (number == "nan" || number == "nanf" || number == "+inf"
+        || number == "-inf" || number == "+inff" || number == "-inff")
         return true;
     return false;
 }
 
-void    ScalarConverter::display_int() const
-{ 
-    if (this->_type.empty())
-        std::cout << "non displayable";
-    else if (no_litteral())
+void    ScalarConverter::display_int(int n, std::string number, std::string type)
+{  
+    if (no_litteral(number))
         std::cout << "Impossible";
+    else if (type.empty())
+        std::cout << "non displayable";
     else
-        std::cout << this->_n;
+        std::cout << n;
     std::cout << std::endl;
 }
 
-void    ScalarConverter::display_char() const
+void    ScalarConverter::display_char(char c, std::string number)
 {
-    if (no_litteral())
+    if (no_litteral(number))
         std::cout << "Impossible";
-    else if (!std::isprint(this->_c))
+    else if (!std::isprint(c))
         std::cout << "non displayable";
     else
-        std::cout << "'" << this->_c << "'";
+        std::cout << "'" << c << "'";
     std::cout << std::endl;
 }
 
-void    ScalarConverter::display_float() const
+void    ScalarConverter::display_float(float f, std::string number, std::string type)
 {
-    if (this->number == "nanf" || this->number == "+inff" || this->number == "-inff")
-        std::cout << this->number;
-    else if (no_litteral())
-        std::cout << this->number << "f";
-    else if (this->_type == "INT" || this->_type == "CHAR" || (this->_type == "FLOAT" && std::fmod(this->_f, 1) == 0) || (this->_type == "DOUBLE" && std::fmod(this->_d, 1) == 0))
-        std::cout << this->_f << ".0f";
-    else if (this->_type.empty())
+    if (number == "nanf" || number == "+inff" || number == "-inff")
+        std::cout << number;
+    else if (no_litteral(number))
+        std::cout << number << "f";
+    else if (type == "INT" || type == "CHAR" || (type == "FLOAT" && std::fmod(f, 1) == 0))
+        std::cout << f << ".0f";
+    else if (type.empty())
         std::cout << "non displayable";
     else
-        std::cout << this->_f << "f";
+        std::cout << f << "f";
     std::cout << std::endl;
 }
 
-void    ScalarConverter::display_double() const
+void    ScalarConverter::display_double(double d, std::string number, std::string type)
 {
-    if (this->number == "nanf")
+    if (number == "nanf")
         std::cout << "nan";
-    else if (this->number == "+inff")
+    else if (number == "+inff")
         std::cout << "+inf";
-    else if (this->number == "-inff")
+    else if (number == "-inff")
         std::cout << "-inf";
-    else if (no_litteral())
-        std::cout << this->number;
-    else if (this->_type == "INT" || this->_type == "CHAR")
-        std::cout << this->_d << ".0";
-    else if (this->_type == "FLOAT")
-        std::cout << this->number.substr(0, this->number.length() - 1);
-    else if (this->_type.empty())
+    else if (no_litteral(number))
+        std::cout << number;
+    else if (type == "INT" || type == "CHAR")
+        std::cout << d << ".0";
+    else if (type == "FLOAT")
+        std::cout << number.substr(0, number.length() - 1);
+    else if (type.empty())
         std::cout << "non displayable";
     else
-        std::cout << this->number;
+        std::cout << number;
     std::cout << std::endl;
 }
 
-void ScalarConverter::convert()
+void ScalarConverter::convert(std::string str)
 {
-    if (is_possible())
+    std::string type;
+    type = set(str);
+    if (is_possible(type, str))
         return ;
-    if (this->_type == "CHAR")
+    if (type == "CHAR" || type == "LITTERAL")
     {
-        _c = this->number[0];
-        _n = static_cast< int >( _c );
-        _f = static_cast< float >( _c );
-        _d = static_cast< double >( _c );
+        std::cout << "char: "; display_char(str[0], str);
+        std::cout << "int: "; display_int(static_cast< int >(str[0]), str, type);
+        std::cout << "float: "; display_float(static_cast< float >(str[0]), str, type);
+        std::cout << "double: "; display_double(static_cast< double >(str[0]), str, type);
     }
-    else if (this->_type == "INT")
+    else if (type == "INT")
     {
-        _n = std::stoi(this->number);
-        _f = static_cast< float >( _n );
-        _d = static_cast< double >( _n );
-        _c = static_cast< char >( _n );
+        std::cout << "char: "; display_char(static_cast< char >(ConvertToInt(str)), str);
+        std::cout << "int: " <<  ConvertToInt(str) << std::endl;
+        std::cout << "float: "; display_float(static_cast< float >(ConvertToInt(str)), str, type);
+        std::cout << "double: "; display_double(static_cast< double >(ConvertToInt(str)), str, type);
     }
-    else if (this->_type == "FLOAT")
+    else if (type == "FLOAT")
     {
-        _f = std::stof(this->number);
-        _n = static_cast< int >( _f );
-        _d = static_cast< double >( _f );
-        _c = static_cast< char >( _f );
+        std::cout << "char: "; display_char(static_cast< char >(ConvertToFloat(str.substr(0, str.length() - 1))), str);
+        std::cout << "int: "; display_int(static_cast< int >(ConvertToFloat(str.substr(0, str.length() - 1))), str, type);
+        std::cout << "float: "; display_float(ConvertToFloat(str.substr(0, str.length() - 1)), str, type);
+        std::cout << "double: "; display_double(static_cast< double >(ConvertToFloat(str.substr(0, str.length() - 1))), str, type);
     }
-    else if (this->_type == "DOUBLE")
+    else if (type == "DOUBLE")
     {
-        _d = std::stod(this->number);
-        _n = static_cast< int >( _d );
-        _f = static_cast< float >( _d );
-        _c = static_cast< char >( _d );
+        std::cout << "char: "; display_char(static_cast< char >(ConvertToDouble(str)), str);
+        std::cout << "int: "; display_int(static_cast< int >(ConvertToDouble(str)), str, type);
+        std::cout << "float: "; display_float(static_cast< float >(ConvertToDouble(str)), str, type);
+        std::cout << "double: " << ConvertToDouble(str) << std::endl;
     }
-}
-
-std::ostream&    operator<<(std::ostream& o, const ScalarConverter& src)
-{
-    o << "char: "; src.display_char();
-    o << "int: "; src.display_int();
-    o << "float: "; src.display_float();
-    o << "double: "; src.display_double();
-    return o;
 }

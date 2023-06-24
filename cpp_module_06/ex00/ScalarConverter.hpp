@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:57:38 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/06 00:24:27 by valentin         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:58:06 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,38 +15,29 @@
 
 #include <iostream>
 #include <string>
+#include <cmath>
+#include <sstream>
 
 class ScalarConverter
 {
     private:
-        char    _c;
-        int     _n;
-        float   _f;
-        double  _d;
-        std::string _type;
-        std::string number;
+        ScalarConverter() {};
         
     public:
-        ScalarConverter();
-        ~ScalarConverter();
-        ScalarConverter(const ScalarConverter& src);
-        ScalarConverter& operator=(const ScalarConverter& src);
-        char getC(void) const;
-        double getD(void) const;
-        float getF(void) const;
-        int getI(void) const;
-        void set(std::string str);
-        int isInt(std::string str);
-        int isFloat(std::string str);
-        int isDouble(std::string str);
-        void convert();
-        int is_possible();
-        void display_int() const;
-        int no_litteral() const;
-        void display_char() const;
-        void display_float() const;
-        void display_double() const;
+        ~ScalarConverter() {};
+        static std::string set(std::string str);
+        static int isInt(std::string str);
+        static int isFloat(std::string str);
+        static int isDouble(std::string str);
+        static void convert(std::string str);
+        static int is_possible(std::string type, std::string number);
+        static void display_int(int n, std::string number, std::string type);
+        static int no_litteral(std::string number);
+        static void display_char(char c, std::string number);
+        static void display_float(float f, std::string number, std::string type);
+        static void display_double(double d, std::string number, std::string type);
+        static double ConvertToDouble(const std::string& str);
+        static float ConvertToFloat(const std::string& str);
+        static int ConvertToInt(const std::string& str);
 };
-std::ostream&    operator<<(std::ostream& o, const ScalarConverter& src);
-
 #endif

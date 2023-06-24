@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:39:52 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/05 23:00:05 by valentin         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:24:35 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,5 @@ int main(int argc, char **argv)
         std::cout << "Error: program need one argument";
         return 0;
     }
-    ScalarConverter number;
-    number.set(argv[1]);
-    number.convert();
-    std::cout << number;
+    ScalarConverter::convert(argv[1]);
 }
