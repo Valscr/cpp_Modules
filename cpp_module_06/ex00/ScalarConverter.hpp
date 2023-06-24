@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:57:38 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/25 00:36:10 by valentin         ###   ########.fr       */
+/*   Updated: 2023/06/25 00:49:30 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class ScalarConverter
         static int isInt(std::string str);
         static int isFloat(std::string str);
         static int isDouble(std::string str);
-        static void convert(std::string str);
+        static int convert(std::string str);
         static int is_possible(std::string type, std::string number);
         static void display_int(int n, std::string number, std::string type);
         static int no_litteral(std::string number);

@@ -5,11 +5,10 @@
 #                                                     +:+ +:+         +:+      #
 #    By: valentin <valentin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/06/05 23:00:19 by valentin          #+#    #+#              #
-#    Updated: 2023/06/25 00:05:30 by valentin         ###   ########.fr        #
+#    Created: 2023/06/25 00:52:41 by valentin          #+#    #+#              #
+#    Updated: 2023/06/25 00:53:42 by valentin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 SRCS			= main.cpp ScalarConverter.cpp
 OBJS			= $(SRCS:.cpp=.o)

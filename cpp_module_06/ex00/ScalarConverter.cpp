@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:57:22 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/25 00:36:01 by valentin         ###   ########.fr       */
+/*   Updated: 2023/06/25 00:53:17 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ std::string ScalarConverter::set(std::string str)
         type = "DOUBLE";
     else if (ScalarConverter::no_litteral(str))
         type = "LITTERAL";
+    else
+        std::cout << "Error: not a valid input" << std::endl;
     return (type);
 }
 
@@ -199,12 +201,12 @@ void    ScalarConverter::display_double(double d, std::string number, std::strin
     std::cout << std::endl;
 }
 
-void ScalarConverter::convert(std::string str)
+int ScalarConverter::convert(std::string str)
 {
     std::string type;
     type = set(str);
-    if (is_possible(type, str))
-        return ;
+    if (type.empty() || is_possible(type, str))
+        return (0);
     if (type == "CHAR" || type == "LITTERAL")
     {
         std::cout << "char: "; display_char(str[0], str);
@@ -233,4 +235,5 @@ void ScalarConverter::convert(std::string str)
         std::cout << "float: "; display_float(static_cast< float >(ConvertToDouble(str)), str, type);
         std::cout << "double: " << ConvertToDouble(str) << std::endl;
     }
+    return (1);
 }
