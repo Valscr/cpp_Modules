@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vescaffr <vescaffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 11:01:09 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/11 12:15:17 by valentin         ###   ########.fr       */
+/*   Updated: 2023/07/24 14:51:59 by vescaffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <algorithm>
 #include <deque>
 #include <ctime>
+#include <sstream>
 
 class PMergeMe
 {

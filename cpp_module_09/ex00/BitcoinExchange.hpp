@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vescaffr <vescaffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 11:25:25 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/09 11:47:17 by valentin         ###   ########.fr       */
+/*   Updated: 2023/07/24 14:49:22 by vescaffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <list>
 #include <iomanip>
 #include <ctime>
+#include <algorithm>
+#include <sstream>
 
 class BitcoinExchange
 {

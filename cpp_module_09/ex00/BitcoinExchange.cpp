@@ -3,14 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vescaffr <vescaffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 11:25:15 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/09 11:54:47 by valentin         ###   ########.fr       */
+/*   Updated: 2023/07/24 14:47:31 by vescaffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+
+int ConvertToInt(const std::string& str)
+{
+    std::istringstream iss(str);
+    int value;
+    if (!(iss >> value))
+        throw std::runtime_error("");
+    return value;
+}
+
+float ConvertToFloat(const std::string& str)
+{
+    std::istringstream iss(str);
+    float value;
+    if (!(iss >> value))
+        throw std::runtime_error("");
+    return value;
+}
+
+double ConvertToDouble(const std::string& str)
+{
+    std::istringstream iss(str);
+    double value;
+    if (!(iss >> value))
+        throw std::runtime_error("");
+    return value;
+}
 
 BitcoinExchange::BitcoinExchange(std::string line)
 {
@@ -19,7 +46,7 @@ BitcoinExchange::BitcoinExchange(std::string line)
     if(!std::isdigit(line[i]))
         throw std::runtime_error("");
     for (; std::isdigit(line[i]) || line[i] == '-'; i++) {}
-    if (!isValidDate(std::stoi(line.substr(0, 4)), std::stoi(line.substr(5, 2)), std::stoi(line.substr(8, 2))))
+    if (!isValidDate(ConvertToInt(line.substr(0, 4)), ConvertToInt(line.substr(5, 2)), ConvertToInt(line.substr(8, 2))))
         throw std::runtime_error("Error: bad input => " + line.substr(0, i) + "\n");
     this->_date = line.substr(0, i);
     for (; line[i] == ' '; i++) {}
@@ -31,11 +58,11 @@ BitcoinExchange::BitcoinExchange(std::string line)
         throw std::runtime_error("");
     if (!std::isdigit(line[line.size() - 1]))
         throw std::runtime_error("");
-    if (std::stof(line.substr(i)) < 0.0)
+    if (ConvertToFloat(line.substr(i)) < 0.0)
         throw std::runtime_error("Error: not a positive number.\n");
-    if (std::stof(line.substr(i)) > 1000.0)
+    if (ConvertToFloat(line.substr(i)) > 1000.0)
         throw std::runtime_error("Error: too large a number.\n");
-    this->_value = std::stof(line.substr(i));
+    this->_value = ConvertToFloat(line.substr(i));
 }
 
 float BitcoinExchange::find_date_price(std::list<std::string> database)
@@ -48,7 +75,7 @@ float BitcoinExchange::find_date_price(std::list<std::string> database)
             if (compareDates(it->substr(0, 10), this->_date.substr(0, 10)) && compareDates(str.substr(0, 10), it->substr(0, 10)))
                 str = *it;
     }
-    return (std::stof(str.substr(11)) * this->_value);
+    return (ConvertToFloat(str.substr(11)) * this->_value);
 }
 
 std::ostream&    operator<<(std::ostream& o, const BitcoinExchange& src)
@@ -70,13 +97,13 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& src)
 
 bool compareDates(const std::string& date1, const std::string& date2)
 {
-    int year1 = std::stoi(date1.substr(0, 4));
-    int month1 = std::stoi(date1.substr(5, 2));
-    int day1 = std::stoi(date1.substr(8, 2));
+    int year1 = ConvertToInt(date1.substr(0, 4));
+    int month1 = ConvertToInt(date1.substr(5, 2));
+    int day1 = ConvertToInt(date1.substr(8, 2));
 
-    int year2 = std::stoi(date2.substr(0, 4));
-    int month2 = std::stoi(date2.substr(5, 2));
-    int day2 = std::stoi(date2.substr(8, 2));
+    int year2 = ConvertToInt(date2.substr(0, 4));
+    int month2 = ConvertToInt(date2.substr(5, 2));
+    int day2 = ConvertToInt(date2.substr(8, 2));
 
     if (year1 < year2) {
         return true;
@@ -106,3 +133,4 @@ bool isValidDate(int year, int month, int day)
 
     return true;
 }
+

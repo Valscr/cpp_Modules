@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vescaffr <vescaffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 19:47:14 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/09 20:16:51 by valentin         ###   ########.fr       */
+/*   Updated: 2023/07/24 14:35:24 by vescaffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <stack>
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 
 class RPN
 {

@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vescaffr <vescaffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 11:00:56 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/11 12:28:17 by valentin         ###   ########.fr       */
+/*   Updated: 2023/07/24 14:48:50 by vescaffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+
+int ConvertToInt(const std::string& str)
+{
+    std::istringstream iss(str);
+    int value;
+    if (!(iss >> value))
+        throw std::runtime_error("");
+    return value;
+}
 
 PMergeMe::PMergeMe(int argc, char **argv)
 {
@@ -20,15 +29,15 @@ PMergeMe::PMergeMe(int argc, char **argv)
         for (int j = 0; argv[i][j]; j++)
             if (!std::isdigit(argv[i][j]))
                 throw std::runtime_error("Error: only positive integer numbers are allowed\n");
-        if (std::stoi(argv[i]) < 0)
+        if (ConvertToInt(argv[i]) < 0)
             throw std::runtime_error("Error\n");
     }
     i = 1;
     for (; argv[i]; i++)
     {
-        this->_numbers_vec.push_back(std::stoi(argv[i]));
-        this->_numbers_vec_before.push_back(std::stoi(argv[i]));
-        this->_numbers_deq.push_back(std::stoi(argv[i]));
+        this->_numbers_vec.push_back(ConvertToInt(argv[i]));
+        this->_numbers_vec_before.push_back(ConvertToInt(argv[i]));
+        this->_numbers_deq.push_back(ConvertToInt(argv[i]));
     }
     this->_duration_vec = 0;
     this->_duration_deq = 0;

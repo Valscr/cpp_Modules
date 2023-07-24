@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vescaffr <vescaffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 19:47:22 by valentin          #+#    #+#             */
-/*   Updated: 2023/06/11 10:37:35 by valentin         ###   ########.fr       */
+/*   Updated: 2023/07/24 14:34:33 by vescaffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void RPN::calculate()
     while (this->_operation[i])
     {
         if (isdigit(this->_operation[i]) && !std::isdigit(this->_operation[i + 1]))
-            operandStack.push(std::stoi(&this->_operation[i]));
+            operandStack.push(std::atoi(&this->_operation[i]));
         else if (this->_operation [i] == '-' || this->_operation[i] == '+' || this->_operation[i] == '*' || this->_operation[i] == '/')
         {
             if (operandStack.size() >= 2)
