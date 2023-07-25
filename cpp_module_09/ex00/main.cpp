@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vescaffr <vescaffr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:23:22 by valentin          #+#    #+#             */
-/*   Updated: 2023/07/24 14:38:10 by vescaffr         ###   ########.fr       */
+/*   Updated: 2023/07/25 12:48:44 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ int main(int argc, char **argv)
         {
             try {
                 BitcoinExchange btc(lineinput);
-                std::cout << btc;
-                std::cout << btc.find_date_price(datacsv) << std::endl;
+                std::cout << std::fixed << std::setprecision(2) << btc.find_date_price(datacsv) << std::endl;
                 }
                 catch (const std::runtime_error& e)
                 {

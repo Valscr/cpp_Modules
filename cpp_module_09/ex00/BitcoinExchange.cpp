@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vescaffr <vescaffr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 11:25:15 by valentin          #+#    #+#             */
-/*   Updated: 2023/07/24 14:47:31 by vescaffr         ###   ########.fr       */
+/*   Updated: 2023/07/25 12:44:19 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,6 @@ float ConvertToFloat(const std::string& str)
 {
     std::istringstream iss(str);
     float value;
-    if (!(iss >> value))
-        throw std::runtime_error("");
-    return value;
-}
-
-double ConvertToDouble(const std::string& str)
-{
-    std::istringstream iss(str);
-    double value;
     if (!(iss >> value))
         throw std::runtime_error("");
     return value;
@@ -75,6 +66,11 @@ float BitcoinExchange::find_date_price(std::list<std::string> database)
             if (compareDates(it->substr(0, 10), this->_date.substr(0, 10)) && compareDates(str.substr(0, 10), it->substr(0, 10)))
                 str = *it;
     }
+    it = database.begin();
+    it++;
+    if (str == it->substr(0, 10))
+        throw std::runtime_error("Error: no price known at this date => " + this->_date.substr(0, 10) + "\n");
+    std::cout << *this;
     return (ConvertToFloat(str.substr(11)) * this->_value);
 }
 

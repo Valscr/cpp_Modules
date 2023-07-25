@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vescaffr <vescaffr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 11:25:25 by valentin          #+#    #+#             */
-/*   Updated: 2023/07/24 14:49:22 by vescaffr         ###   ########.fr       */
+/*   Updated: 2023/07/25 12:37:54 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,5 @@ class BitcoinExchange
 std::ostream&    operator<<(std::ostream& o, const BitcoinExchange& src);
 bool isValidDate(int year, int month, int day);
 bool compareDates(const std::string& date1, const std::string& date2);
+std::string floatToString(float number);
 #endif
